@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-export default function Todo({ todo, toggleComplete, handleDelete, handleEdit,}) {
-  
+
+export default function Todo({ todo, toggleComplete, handleDelete, handleEdit }) {
+
   const [newTitle, setNewTitle] = React.useState(todo.title);
- 
+  const [OpenDialog, SetDialogOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    SetDialogOpen(true)
+  }
+  const handleModalClose = () => {
+    SetDialogOpen(false)
+  }
+
   const handleChange = (e) => {
     e.preventDefault();
     if (todo.complete === true) {
@@ -15,24 +24,32 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit,})
       setNewTitle(e.target.value);
     }
   };
-  
 
-  
+
   return (
     <div className="todo">
-      <textarea
+       {OpenDialog && <div className="modal-backdrop"></div>}
+      <p
         style={{ textDecoration: todo.completed && "line-through" }}
-        type="text"
-        value={todo.title === "" ? newTitle : todo.title}
-        className="list"
-        onChange={handleChange}
-      ></textarea>
-      <details 
-      id="detalhe"
-       style={{ wordWrap: 'break-word' }}>
-        <summary>Leia mais</summary>
-      {newTitle}
-      </details>
+
+      >{newTitle} </p>
+
+      <dialog open={OpenDialog} >
+        <textarea
+          style={{ textDecoration: todo.completed && "line-through" }}
+          type="text"
+          value={todo.title === "" ? newTitle : todo.title}
+          className="list"
+          onChange={handleChange}
+        ></textarea>
+        <button
+          className="button-edit"
+          onClick={() => handleEdit(todo, newTitle)}
+        >
+          Editar
+        </button>
+        <button className="closeModal" onClick={handleModalClose}>fechar</button>
+      </dialog>
       <div className="botao">
         <button
           className="button-complete"
@@ -42,7 +59,7 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit,})
         </button>
         <button
           className="button-edit"
-          onClick={() => handleEdit(todo, newTitle)}
+          onClick={handleModalOpen}
         >
           <EditIcon id="i" />
         </button>
@@ -52,4 +69,6 @@ export default function Todo({ todo, toggleComplete, handleDelete, handleEdit,})
       </div>
     </div>
   );
+
+
 }

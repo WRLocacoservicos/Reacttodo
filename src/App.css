@@ -52,6 +52,25 @@ form input {
   text-align: center;
   margin-bottom: 10px;
 }
+dialog{
+  position: fixed;
+ border:none;
+ width: 50%;
+ height: 50%;
+ top: 50%;
+ left: 50%;
+transform: translate(-50%,-50%);
+width: 80%;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Preto com 50% de opacidade */
+}
 .btn_container button {
   background: #333;
   color: white;
@@ -70,20 +89,18 @@ form input {
   margin: 0 auto;
 
 }
-.todo textarea{
+dialog textarea{
+  display: flex;
+  margin: auto;
   width: 80%;
-  height: 100%;
-margin-left: -10px;
+  height: 80%;
   background-color: #cbeff3;
   border:none;
   border-radius: 8px;
   outline: none;
  
 }
-.todo details{
- display: none;
 
-}
 .todo {
   margin-top: 20px;
   background: white;
@@ -122,11 +139,26 @@ margin-left: -10px;
   margin-right: 10px;
 }
 .button-edit {
+
   color: #56cfff;
   margin-right: 10px;
 }
+.botao{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+}
+.closeModal {
+  color: #f00000;
+  margin-right: 10px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+
+}
 .button-delete {
-  color: rgb(255, 122, 98);
+  color: rgb(234, 40, 6);
 }
 @media screen and (max-width: 667px) {
   form {
@@ -159,37 +191,36 @@ margin-left: -10px;
   background-color: transparent;
   border-radius: 50%;
 
+
+
+  
 }
-.todo details{
+
+
+.button-edit{
+  margin-top: -2px;
+}
+  dialog {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+   transform: translate(-50%,-50%);
+   width: 80%;
+  }
+ dialog textarea{
   display: flex;
-  background-color: #56cfff;
-  width: 150px;
-  border-radius: 5px;
-  border: solid 1px black;
-  position: absolute;
-  margin-top: 20%;
-  margin-left: 10%;
-
-
-
+  margin: auto;
+  width: 90%;
+  height: 80%;
+  
 }
- .todo textarea{
-
-  resize: none;
-  background-color: #333;
-  color: #fff;
-  height: 50px;
-}
-.todo details summary{
-  border-radius: 5px;
-  color: rgb(2, 8, 122);
- font-size:10px;
- text-align: center;
- 
- background-color: aquamarine
-
- 
-
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .botao{
